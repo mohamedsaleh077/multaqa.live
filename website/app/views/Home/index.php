@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>-->
     <style type="text/tailwindcss">
         @theme {
             --primary-bg: #FA8843;
@@ -93,8 +93,8 @@
                 <h2 class="text-2xl">Let's Have Fun!</h2>
                 <form action="" method="post">
                     <input type="text" name="username" placeholder="username" maxlength="50">
-                    <input type="password" name="password" placeholder="password" maxlength="50">
-                    <div class="checkbox">
+                    <input type="password" id="pwd" name="password" placeholder="password" maxlength="50">
+                    <div class="checkbox" id="chkbx">
                         <input type="checkbox" id="showpwd" name="showpwd">
                         <lable for="showpwd">
                             show password
@@ -112,7 +112,22 @@
 </div>
 
 <script>
-    $.document
+    let checked = false;
+    const checkBoxDiv = document.getElementById('chkbx');
+    const checkBox = document.getElementById('showpwd');
+    const pwd = document.getElementById('pwd');
+
+    checkBoxDiv.addEventListener("click", function (){
+        if (checked === false){
+            checked = true;
+            checkBox.checked = true;
+            pwd.type = 'text';
+        }else{
+            checked = false;
+            checkBox.checked = false;
+            pwd.type = 'password';
+        }
+    })
 </script>
 </body>
 </html>
