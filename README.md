@@ -7,6 +7,7 @@ test on: https://multaqa.live
 - HTML
 - CSS
 - Java Script
+- JQuery
 - Tailwind
 - PHP
 - MySQL
