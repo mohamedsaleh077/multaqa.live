@@ -1,0 +1,5 @@
+docker
+website/uploads/*
+.idea
+website/config.ini
+./hit.txt
