@@ -3,3 +3,4 @@ website/uploads/*
 .idea
 website/config.ini
 ./hit.txt
+node_modules
