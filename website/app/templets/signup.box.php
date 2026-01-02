@@ -16,7 +16,7 @@
             <li id="NumPwd" data-criterion="number" class="invalid"></li>
             <li id="SpCharPwd" data-criterion="special" class="invalid"></li>
         </ul>
-        <button id="signup" disabled type="submit" class="disabled-btn"></button>
+        <button id="signup-btn" disabled type="submit" class="disabled-btn"></button>
     </form>
     <a id="accountAlready" href="/"></a>
 </div>
