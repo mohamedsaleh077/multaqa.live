@@ -6,7 +6,7 @@ $(document).ready(function () {
                 $(el).attr("placeholder", value);
             } else {
                 $(el).html(value);
-                console.log(el + value);
+                // console.log(el + value);
             }
         });
     })
