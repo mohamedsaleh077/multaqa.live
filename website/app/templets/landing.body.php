@@ -4,4 +4,4 @@
 <p id="LandingP2"></p>
 <p id="LandingP3"></p>
 
-<img class="p-5" src="/assets/people.png" alt="conneted people">
+<img class="p-5" src="/assets/people.svg" alt="conneted people">
