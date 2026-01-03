@@ -37,7 +37,7 @@ class App
         $this->params = $url ? array_values($url) : [];
 
         // check if the page not exists
-        if ( !$this->ControllerOrMethodExists ) {
+        if ( !$this->ControllerOrMethodExists && $url) {
             $this->controller = 'ErrorPage';
             $this->method = 'index';
             $this->params = ['404'];
