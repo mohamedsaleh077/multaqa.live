@@ -1,4 +1,4 @@
-name: moltaqaGR
+name: multaqa
 services:
   webserver:
     build: .
