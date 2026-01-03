@@ -28,7 +28,7 @@ you can read about it see documentation [here](DB.md)
 ```bash
 docker compose --build -d up
 ```
-composer is installed in webserver docker image, run `composer install` from the image shell
+composer is installed in webserver docker image, run `composer install` from the image shell in `app/`.
 ### Tailwind CSS for development:
 - initialize bun:
 ```bash
