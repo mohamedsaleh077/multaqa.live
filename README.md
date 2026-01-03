@@ -22,27 +22,25 @@ test on: https://multaqa.live
 ## Database
 you can read about it see documentation [here](DB.md)
 
-## Notes for development
-- to run the project, you need docker compose, use:
+# Notes for development
+
+### to run the project, you need docker compose, use:
 ```bash
 docker compose --build -d up
 ```
-
-- Tailwind CSS for development:
+composer is installed in webserver docker image, run `composer install` from the image shell
+### Tailwind CSS for development:
+- initialize bun:
 ```bash
-npm run dev 
+bun install
 ```
-or 
+
+- for development:
 ```bash
 bun run dev
 ```
-to install bun on linux: `curl -fsSL https://bun.com/install | bash` or use `npm` whatever
 
-- tailwind for production:
-```bash
-npm run build
-```
-or
+- for production:
 ```bash
 bun run build
 ```
