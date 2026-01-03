@@ -6,6 +6,7 @@ class App
     protected $method = 'index';
     protected $params = [];
 
+    protected $ControllerOrMethodExists = true;
     public function __construct() {
         // Parse url into readable string
         $url = $this->parseUrl();
@@ -15,13 +16,20 @@ class App
         if (file_exists( $controller_file )) {
             $this->controller = $url[0];
             unset($url[0]);
+        } else {
+            $this->ControllerOrMethodExists = false;
         }
+
+        // If controller (url[0]) doesn't exist it will use 'Home' automatically
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controllers/' . $this->controller . '.php';
 
         // Get method
         if (isset($url[1])) {
             if (method_exists($this->controller, $url[1])) {
                 $this->method = $url[1];
                 unset($url[1]);
+            } else {
+                $this->ControllerOrMethodExists = false;
             }
         }
 
@@ -29,14 +37,12 @@ class App
         $this->params = $url ? array_values($url) : [];
 
         // check if the page not exists
-        if (isset($url[0]) && !file_exists( $controller_file )) {
+        if ( !$this->ControllerOrMethodExists ) {
             $this->controller = 'ErrorPage';
             $this->method = 'index';
             $this->params = ['404'];
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controllers/' . $this->controller . '.php';
         }
-
-        // If controller (url[0]) doesn't exist it will use 'Home' automatically
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controllers/' . $this->controller . '.php';
 
         // Create a new instance of the controller
         $this->controller = new $this->controller;
