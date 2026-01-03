@@ -19,6 +19,9 @@ test on: https://multaqa.live
 - Tailwind
 - Localization
 
+## Database
+you can read about it see documentation [here](DB.md)
+
 ## Notes for development
 - to run the project, you need docker compose, use:
 ```bash
