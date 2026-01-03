@@ -24,9 +24,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root
+    env_file: .env.dev
     ports:
       - "8081:80"
     depends_on:
