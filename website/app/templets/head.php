@@ -5,11 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <link rel="stylesheet" href="/public/styles/style.css">
     <script src="/assets/jquery-3.7.1.min.js.js"></script>
     <script src="/scripts/lang.js"></script>
-    <style type="text/tailwindcss">
-
-    </style>
     <title><?= $title ?></title>
