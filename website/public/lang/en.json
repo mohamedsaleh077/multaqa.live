@@ -30,6 +30,9 @@
     "LowerLetterPwd": "At least <strong>one small letter</strong>",
     "NumPwd": "At least <strong>one number</strong>",
     "SpCharPwd": "At least <strong>one Specail Characters </strong>",
+    "captcha-input": "Captcha Phase",
+    "Captcha-title": "Please enter the captcha phase",
+    "reload-captcha": "Reload",
 
     "Tips" : "Tips",
     "usernameTips": "Username must be between 3 and 50 characters, no special characters except _ ",

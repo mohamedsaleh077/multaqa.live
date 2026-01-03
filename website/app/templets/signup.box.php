@@ -16,6 +16,18 @@
             <li id="NumPwd" data-criterion="number" class="invalid"></li>
             <li id="SpCharPwd" data-criterion="special" class="invalid"></li>
         </ul>
+
+
+<!--        Captcha-->
+        <div class="box">
+            <p id="Captcha-title"></p>
+            <img src="/Captcha/img" alt="captcha-image" class="img-captcha">
+            <div class="captcha">
+                <input type="text" name="captcha" id="captcha-input" maxlength="5">
+                <button type="button" id="reload-captcha"></button>
+            </div>
+        </div>
+
         <button id="signup-btn" disabled type="submit" class="disabled-btn"></button>
     </form>
     <a id="accountAlready" href="/"></a>
@@ -37,4 +49,11 @@
             $("#signup").prop("disabled", true);
         }
     });
+
+
+    $("#reload-captcha").click(function () {
+        d = new Date();
+        $("#captcha").attr("src", "/Captcha/img?"+d.getTime());
+    })
+
 </script>

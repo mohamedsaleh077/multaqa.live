@@ -48,8 +48,28 @@ article {
     @apply p-2 flex flex-col bg-(--secound-bg) border-2 border-solid border-(--black-text) text-wrap
 }
 
+.box * {
+    @apply m-2
+}
+
+.img-captcha{
+    width: 230px;
+}
+
+.captcha {
+    @apply flex justify-center flex-row w-60
+}
+
+.captcha button {
+    width: 30%
+}
+
+.captcha input {
+    width: 70%;
+}
+
 input {
-    @apply border-2 border-solid m-2 block bg-(--white-text) p-2 w-64
+    @apply border-2 border-solid block bg-(--white-text) p-2 w-64
 }
 
 .checkbox {
@@ -61,7 +81,7 @@ input {
 }
 
 submit, button {
-    @apply p-3 bg-(--button-links) m-4 block hover:bg-(--button-links-hover) active:bg-(--button-links) w-fit
+    @apply p-3 bg-(--button-links) block hover:bg-(--button-links-hover) active:bg-(--button-links) w-fit
     cursor-pointer text-(--white-text)
 }
 
