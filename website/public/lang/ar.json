@@ -1,0 +1,46 @@
+{
+    "HeaderTitle": "اهلا بكم في ملتقى",
+    "HeaderSubTitle": "عودة المجتمعات الثديمة للحياة!",
+    "Login": "سجل دخولك",
+    "Login-btn": "تسجيل",
+    "signup": "إنشاء حساب",
+    "signup-btn": "إنشاء",
+    "logout": "خروج",
+    "Privacy": "سياسة الخصوصية",
+    "Rules": "قواعد المجتمع",
+    "FooterTitle": "صنع بحب في اراضي مصرية ❤️🇪🇬",
+    "FooterSubTitle": "جميع الحقوق محفوظة 2026©",
+    "usr": "اسم المستخدم",
+    "pwd": "كلمة المرور",
+    "home": "الرئيسية",
+    "LoginTitle": "لنستمتع!",
+    "ShowPassWd": "إظهار كلمة المرور",
+    "NoAccount": "انشئ حساب",
+    "accountAlready": "لدي حساب",
+
+    "LandingTitle": "مرحبا في ملتقى!",
+    "LandingSubtitle": "مجتمع بأيادي مصرية 100%!",
+    "LandingP1": "نحن نهدف الى عمل مجمع خاص بنا بما يناسبنا، لا محتوى ردئ او منشورات غير لائقة، نريدها بسيطة كما كانت في السابق، التحدث بحرية ومجهول الهوية!" ،
+    "LandingP2": "you can find many spaces that discuss all many topics, you can also start a new space by requesting us! we will review your request and make it for you, we aim to keep it free from repeatation.",
+    "LandingP3": "you can report for any content that breaks our <a id=\"Rules\" href=\"\/Rules/\"></a> or help us in moderation by joining us! the project is opensource for everyone and everywhere! you can contribute as a mod, dev or just donate  to our project to keep it alive",
+
+    "SignupTitle": "Join us now!",
+    "charLenForPwd": "more than 8 and less than 50 <strong>Characters</strong>",
+    "UpperLetterPwd": "At least <strong>one capital letter</strong>",
+    "LowerLetterPwd": "At least <strong>one small letter</strong>",
+    "NumPwd": "At least <strong>one number</strong>",
+    "SpCharPwd": "At least <strong>one Specail Characters </strong>",
+    "captcha-input": "Captcha Phase",
+    "Captcha-title": "Please enter the captcha phase",
+    "reload-captcha": "Reload",
+
+    "Tips" : "Tips",
+    "usernameTips": "Username must be between 3 and 50 characters, no special characters except _ ",
+    "passwordTips": "Password must be more than 8 and less than 15 characters and have Upper, smaller, number and special character.",
+    "passwordMaxTips": "Password maximum is 255 char",
+    "emailComeSoonTips": "We are working on emails for verifications and reset password as a future plan.",
+    "towFAcomeSoonTips": "2FA codes are coming soon.",
+
+
+    "err404": "404! File Not Found"
+}
