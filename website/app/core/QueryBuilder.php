@@ -169,7 +169,7 @@ class QueryBuilder
         return $this;
     }
 
-    public function Build() :void
+    public function Build()
     {
         if ($this->selectLine) {
             $this->querysArray[] = $this->selectLine . $this->JoinLine . $this->whereLine . $this->orderLine . " ;";
@@ -189,20 +189,21 @@ class QueryBuilder
 
         $this->selectLine = $this->JoinLine = $this->whereLine = $this->orderLine = "";
         $this->insertLine = $this->updateLine = $this->deleteLine = "";
+
+        return $this;
     }
 
-    public function execute(array $params = [], $all = false): array
+    public function execute(array $params = [], $all = false): array | bool
     {
         $result = [];
         foreach($this->querysArray as $sql) {
             try {
                 $result[] = $all ? Database::fetchAll($sql, $params) : Database::fetchOne($sql, $params);
             }catch( \PDOException $Exception ) {
-                // PHP Fatal Error. Second Argument Has To Be An Integer, But PDOException::getCode Returns A
-                // String.
-                throw new error( "error with the query: " . $sql . $Exception->getMessage( ) , $Exception->getCode( ));
+                throw new error( "error with the query: " . $sql . $Exception->getMessage() , $Exception->getCode());
             }
         }
+        $this->querysArray = [];
         return $result;
     }
 }
