@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+
 class Controller {
 
     // Create a new instance of a model
