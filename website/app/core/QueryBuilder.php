@@ -2,7 +2,6 @@
 // My ORM feels so sigma
 namespace Core;
 
-use Core\Database;
 use Error;
 
 class QueryBuilder

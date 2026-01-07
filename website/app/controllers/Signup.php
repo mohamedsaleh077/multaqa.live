@@ -1,4 +1,8 @@
 <?php
+
+namespace Controllers;
+use Core\Controller;
+
 class Signup extends Controller {
 
     // Index of the Home page (localhost/Home(/index))

@@ -1,4 +1,6 @@
 <?php
+namespace Controllers;
+use Core\Controller;
 
 use Gregwar\Captcha\CaptchaBuilder;
 

@@ -7,45 +7,45 @@ namespace Composer\Autoload;
 class ComposerStaticInit069413c23c1134012e167c72e6c605ca
 {
     public static $prefixLengthsPsr4 = array (
+        'm' =>
+        array (
+            'models\\' => 7,
+        ),
+        'c' =>
+        array (
+            'core\\' => 5,
+            'controllers\\' => 12,
+        ),
         'S' =>
         array (
             'Symfony\\Component\\Finder\\' => 25,
-        ),
-        'M' =>
-        array (
-            'Models\\' => 7,
         ),
         'G' =>
         array (
             'Gregwar\\' => 8,
         ),
-        'C' =>
-        array (
-            'Core\\' => 5,
-            'Controllers\\' => 12,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'models\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/models',
+        ),
+        'core\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/core',
+        ),
+        'controllers\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/controllers',
+        ),
         'Symfony\\Component\\Finder\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
         ),
-        'Models\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/models',
-        ),
         'Gregwar\\' =>
         array (
             0 => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar',
-        ),
-        'Core\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/core',
-        ),
-        'Controllers\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/controllers',
         ),
     );
 

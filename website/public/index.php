@@ -1,12 +1,47 @@
 <?php
 
-//for production only
-//if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
-//    $location = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-//    header('HTTP/1.1 301 Moved Permanently');
-//    header('Location: ' . $location);
-//    exit;
-//}
+use Random\RandomException;
+use Core\App;
+
+//ini_set('display_errors', '1');
+//ini_set('display_startup_errors', '1');
+//error_reporting(E_ALL);
+
+ini_set('session.use_only_cookies', 1);
+ini_set('session.use_strict_mode', 1);
+
+$config = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/app/config.ini', true);
+
+session_set_cookie_params([
+    'lifetime' => $config['lifetime'],
+    'domain' => $config['host'],
+    'path' => '/',
+    'secure' => $config['secure'],
+    'httponly' => true
+]);
+
+session_start();
+
+// session_rege nerate_id(true);
+function regenerateSessionId(): void
+{
+    session_regenerate_id(true);
+    $_SESSION['last_regeneration'] = time();
+    try {
+        $_SESSION["CSRF_TOKEN"] = bin2hex(random_bytes(32));
+    } catch (RandomException) {
+
+    }
+}
+
+if (!isset($_SESSION['last_regeneration'])) {
+    regenerateSessionId();
+} else {
+    $interval = 60 * 30;
+    if (time() - $_SESSION['last_regeneration'] >= $interval) {
+        regenerateSessionId();
+    }
+}
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/init.php';
 

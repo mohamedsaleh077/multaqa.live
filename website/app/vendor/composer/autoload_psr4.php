@@ -6,9 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'models\\' => array($baseDir . '/models'),
+    'core\\' => array($baseDir . '/core'),
+    'controllers\\' => array($baseDir . '/controllers'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
-    'Models\\' => array($baseDir . '/models'),
     'Gregwar\\' => array($vendorDir . '/gregwar/captcha/src/Gregwar'),
-    'Core\\' => array($baseDir . '/core'),
-    'Controllers\\' => array($baseDir . '/controllers'),
 );

@@ -9,9 +9,9 @@
   },
   "autoload": {
     "psr-4": {
-      "Core\\": "core/",
-      "Controllers\\": "controllers/",
-      "Models\\": "models/"
+      "core\\": "core/",
+      "controllers\\": "controllers/",
+      "models\\": "models/"
     }
   }
 }
