@@ -1,6 +1,6 @@
 <?php
 $title = 'Signup';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/head.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
 ?>
 
 <link rel="stylesheet" href="/assets/csp/password-strength.css">
@@ -11,7 +11,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/head.php';
 </head>
 <body>
 <div class="container">
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/header.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/header.php'; ?>
 
     <div class="pagebody">
         <aside>
@@ -27,10 +27,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/head.php';
             </div>
         </aside>
         <article>
-            <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/signup.box.php'; ?>
+            <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/signup.box.php'; ?>
         </article>
     </div>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/footer.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/footer.php'; ?>
 
 </div>
 </body>

@@ -1,21 +1,25 @@
 <?php
 $title = "Multaqa.live Home Page";
-require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/head.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
 ?>
 </head>
 <body>
 <div class="container">
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/header.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/header.php'; ?>
 
     <div class="pagebody">
         <aside>
-            <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/login.box.php'; ?>
+            <?php
+            if (!isset($_SESSION['user'])) {
+                require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/login.box.php';
+            }
+            ?>
         </aside>
         <article>
-            <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/landing.body.php'; ?>
+            <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/landing.body.php'; ?>
         </article>
     </div>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/footer.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/footer.php'; ?>
 
 </div>
 </body>

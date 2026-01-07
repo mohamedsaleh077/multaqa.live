@@ -1,11 +1,11 @@
 <?php
 $title = "Error";
-require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/head.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
 ?>
 </head>
 <body>
 <div class="container">
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templets/header.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/header.php'; ?>
 
     <div class="pagebody">
         <article>
