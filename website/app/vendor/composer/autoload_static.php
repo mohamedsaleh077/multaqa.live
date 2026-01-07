@@ -11,9 +11,18 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         array (
             'Symfony\\Component\\Finder\\' => 25,
         ),
+        'M' =>
+        array (
+            'Models\\' => 7,
+        ),
         'G' =>
         array (
             'Gregwar\\' => 8,
+        ),
+        'C' =>
+        array (
+            'Core\\' => 5,
+            'Controllers\\' => 12,
         ),
     );
 
@@ -22,9 +31,21 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
         ),
+        'Models\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/models',
+        ),
         'Gregwar\\' =>
         array (
             0 => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar',
+        ),
+        'Core\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/core',
+        ),
+        'Controllers\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/controllers',
         ),
     );
 

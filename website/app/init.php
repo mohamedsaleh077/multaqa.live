@@ -11,7 +11,7 @@ use Random\RandomException;
 ini_set('session.use_only_cookies', 1);
 ini_set('session.use_strict_mode', 1);
 
-$config = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/configs.ini', true)['host'];
+$config = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/configs.ini', true);
 
 session_set_cookie_params([
     'lifetime' => $config['lifetime'],
