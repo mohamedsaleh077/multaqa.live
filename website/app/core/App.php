@@ -36,7 +36,7 @@ class App
     private function setParams()
     {
         if($this->controller !== 'controllers\\ErrorPage'){
-            $this->params = $this->url[2] ? array_values($this->url) : [];
+            $this->params = isset($this->url[2]) ? array_values($this->url) : [];
         }
         return $this;
     }
