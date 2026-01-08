@@ -10,13 +10,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
     <div class="pagebody">
         <aside>
             <?php
-            if (!isset($_SESSION['user'])) {
+            if (!isset($_SESSION['user_id']))
                 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/login.box.php';
-            }
+            else require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/pfp.box.php';
             ?>
         </aside>
         <article>
-            <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/landing.body.php'; ?>
+            <?php  if (!isset($_SESSION['user_id'])) {
+                require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/landing.body.php';
+            } else {
+                echo 'spaces system is under construction!';
+            }?>
         </article>
     </div>
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/footer.php'; ?>

@@ -18,13 +18,13 @@ class Validation
      */
     public function checkMaxLength(array $values) {
         foreach($values as $key => $value) {
-            if(mb_strlen($value[1]) >= $value[0]) $this->errors[] = "max_" . $key . "_" . $value[0];
+            if(mb_strlen($value[1]) > $value[0]) $this->errors[] = "max_" . $key . "_" . $value[0];
         }
     }
 
     public function checkMinLength(array $values) {
         foreach($values as $key => $value) {
-            if(mb_strlen($value[1]) <= $value[0]) $this->errors[] = "min_" . $key . "_" . $value[0];
+            if(mb_strlen($value[1]) < $value[0]) $this->errors[] = "min_" . $key . "_" . $value[0];
         }
     }
 
