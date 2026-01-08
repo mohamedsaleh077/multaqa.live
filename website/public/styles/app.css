@@ -175,7 +175,7 @@ p{
     @apply flex gap-2 items-center mb-1
 }
 
-.post-head img{
+.post-head img, .space-list-item img{
     width: 50px;
     height: 50px;
 }
@@ -183,3 +183,15 @@ p{
 .post h3{
     @apply text-xl font-bold
 }
+
+.space-list-item {
+    @apply flex justify-between gap-3 items-center mt-2 p-3 hover:bg-(--button-links-hover)
+}
+
+.space-list-item *{
+    @apply m-0 cursor-pointer
+}
+
+.space-list-item p{
+      @apply line-clamp-1 text-slate-600
+  }

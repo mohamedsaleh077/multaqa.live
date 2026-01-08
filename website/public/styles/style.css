@@ -9,7 +9,7 @@
       "Courier New", monospace;
     --color-red-100: oklch(93.6% 0.032 17.717);
     --color-red-800: oklch(44.4% 0.177 26.899);
-    --color-green-800: oklch(44.8% 0.119 151.328);
+    --color-slate-600: oklch(44.6% 0.043 257.281);
     --spacing: 0.25rem;
     --breakpoint-lg: 64rem;
     --text-xs: 0.75rem;
@@ -225,9 +225,6 @@
   .contents {
     display: contents;
   }
-  .flex {
-    display: flex;
-  }
   .hidden {
     display: none;
   }
@@ -243,20 +240,11 @@
   .flex-auto {
     flex: auto;
   }
-  .flex-grow {
-    flex-grow: 1;
-  }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .resize {
     resize: both;
   }
   .list-disc {
     list-style-type: disc;
-  }
-  .flex-wrap {
-    flex-wrap: wrap;
   }
   .items-center {
     align-items: center;
@@ -295,24 +283,8 @@
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
-  .text-wrap {
-    text-wrap: wrap;
-  }
   .text-\(--white-text\) {
     color: var(--white-text);
-  }
-  .text-green-800 {
-    color: var(--color-green-800);
-  }
-  .text-red-800 {
-    color: var(--color-red-800);
-  }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .blur {
     --tw-blur: blur(8px);
@@ -565,7 +537,7 @@ p {
   align-items: center;
   gap: calc(var(--spacing) * 2);
 }
-.post-head img {
+.post-head img, .space-list-item img {
   width: 50px;
   height: 50px;
 }
@@ -575,6 +547,30 @@ p {
   --tw-font-weight: var(--font-weight-bold);
   font-weight: var(--font-weight-bold);
 }
+.space-list-item {
+  margin-top: calc(var(--spacing) * 2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--spacing) * 3);
+  padding: calc(var(--spacing) * 3);
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--button-links-hover);
+    }
+  }
+}
+.space-list-item * {
+  margin: calc(var(--spacing) * 0);
+  cursor: pointer;
+}
+.space-list-item p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: var(--color-slate-600);
+}
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
@@ -583,11 +579,6 @@ p {
 @property --tw-font-weight {
   syntax: "*";
   inherits: false;
-}
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
 }
 @property --tw-blur {
   syntax: "*";
@@ -647,7 +638,6 @@ p {
     *, ::before, ::after, ::backdrop {
       --tw-border-style: solid;
       --tw-font-weight: initial;
-      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
