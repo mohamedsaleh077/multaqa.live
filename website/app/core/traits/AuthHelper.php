@@ -46,9 +46,9 @@ trait AuthHelper
 
     private function getUser()
     {
-        if(empty($this->errors->getErrors())){
+        if (empty($this->errors->getErrors())) {
             $this->SQL = new QueryBuilder();
-            $this->user = $this->SQL->select("users", ["id", "username", "password_hash"])->where([["username", "="]])->build()->execute([$this->username]);
+            $this->user = $this->SQL->select("users", ["id", "username", "password_hash", "profile_picture" ,"created_at"])->where([["username", "="]])->build()->execute([$this->username]);
         }
         return $this->user;
     }
@@ -94,6 +94,12 @@ trait AuthHelper
         die();
     }
 
+    protected function getSpaces()
+    {
+        $this->SQL->select("feed", ['space_id'])->join("spaces", "spaces.id" ,"feed.space_id")->where([["user_id", "="]]);
+        return $this->SQL->build()->execute([$_SESSION['user_id']]);
+    }
+
     protected function setSessions()
     {
         $_SESSION['user_id'] = ($this->user[0]) ? $this->user[0]['id'] : Database::lastInsertId();
@@ -101,6 +107,7 @@ trait AuthHelper
         $_SESSION['created_since'] = Controller::dateDiff($this->user[0]['created_at']);
         $_SESSION['pfp'] = $this->user[0]['profile_picture'] ?? '/assets/default_pfp.svg';
         $_SESSION['bio'] = $this->user[0]['bio'] ?? '';
+        $_SESSION['userSpaces'] = $this->getSpaces();
     }
 
 }
