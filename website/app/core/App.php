@@ -28,6 +28,8 @@ class App
             if (method_exists($this->controller, $this->url[1])) {
                 $this->method = $this->url[1];
                 unset($this->url[1]);
+            } else {
+                $this->controller = 'controllers\\ErrorPage';
             }
         }
         return $this;
