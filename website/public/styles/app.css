@@ -68,7 +68,7 @@ article {
     width: 70%;
 }
 
-input {
+input , textarea{
     @apply border-2 border-solid block bg-(--white-text) p-2 w-64
 }
 
@@ -131,8 +131,55 @@ p{
     @apply font-bold
 }
 
-@media (max-width: 768px) {
-    header .header-links{
-        display: none;
-    }
+.space-title-header, .post-footer {
+    @apply flex justify-between mb-3
+}
+.space-title-header .right{
+    @apply flex gap-5
+}
+
+.space-title-header .right h1{
+    @apply text-xl
+}
+
+.space-title-header .right *{
+    @apply m-0
+}
+
+.space-title-header .right img{
+    width: 80px;
+    height: 80px;
+}
+.post-box{
+    @apply hidden m-1
+}
+.post-box form{
+    @apply m-0 p-0
+}
+.post-box form *{
+    @apply m-0 mb-2
+}
+.post-box input, .post-box textarea{
+    @apply w-full
+}
+
+.post {
+    @apply m-2
+}
+
+.post *{
+    @apply m-0
+}
+
+.post-head{
+    @apply flex gap-2 items-center mb-1
+}
+
+.post-head img{
+    width: 50px;
+    height: 50px;
+}
+
+.post h3{
+    @apply text-xl font-bold
 }
