@@ -84,7 +84,7 @@ class QueryBuilder
     {
         $placeholders = " :" . $arr[0];
         $arr[1] = strtoupper($arr[1]); // if operator is LIKE
-        $arr[2] = $arr[2] ? strtoupper($arr[2]) : "";
+        $arr[2] = isset($arr[2]) ? strtoupper($arr[2]) : "";
         return " {$arr[0]} {$arr[1]} {$placeholders} {$arr[2]} ";
     }
 
