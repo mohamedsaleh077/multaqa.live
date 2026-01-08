@@ -93,6 +93,44 @@ p{
     @apply mt-3
 }
 
+.errors{
+    @apply border-2 border-solid border-red-800 bg-red-100
+}
+
+.errors * {
+    @apply text-left m-1
+}
+
+.errors h3 {
+    @apply text-red-800 text-left text-xl
+}
+
+.pfp-box{
+    @apply relative flex flex-col justify-center items-center border-2 border-solid border-(--primary-bg) mt-15 p-5;
+    @apply bg-(--secound-bg) pt-10;
+}
+
+.pfp-img {
+    @apply absolute rounded-full w-25 h-25 border-2 border-solid border-(--primary-bg);
+    top: -65px
+}
+
+.username {
+    @apply text-xl font-bold
+}
+
+.user-bio {
+    @apply text-justify
+}
+
+.user-rows{
+    @apply w-full
+}
+
+#since {
+    @apply font-bold
+}
+
 @media (max-width: 768px) {
     header .header-links{
         display: none;
