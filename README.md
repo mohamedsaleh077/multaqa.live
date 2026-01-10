@@ -1,81 +1,120 @@
-# Multaqa (ملتقى)
+# Multaqa (ملتقى) 🤝
 
-Multaqa is a modern, community-driven social platform built with a focus on simplicity, privacy, and meaningful interactions. It revives the spirit of classic online communities while utilizing modern technologies.
+Multaqa is a professional, community-driven social platform built with a commitment to simplicity, privacy, and meaningful interactions. Developed with a modern custom MVC architecture, it aims to revive the essence of classic online forums while delivering a sleek, high-performance experience.
 
 [![Test Site](https://img.shields.io/badge/Test--Site-multaqa.live-blue?style=for-the-badge)](https://multaqa.live)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0)
+[![PHP](https://img.shields.io/badge/PHP-8.4-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-## 🚀 Overview
+---
 
-Multaqa (Arabic for "Meeting Point") is a 100% Egyptian-developed platform designed to provide a clean, high-quality environment for users to discuss various topics in dedicated "Spaces." It emphasizes free expression, anonymity where desired, and community-led moderation.
+## 🚀 Key Features
+
+- **Custom MVC Engine:** A lightweight, high-performance PHP framework built from the ground up.
+- **Spaces (Communities):** Dedicated areas for focused discussions, each with its own identity.
+- **Privacy First:** Designed with anonymity options and secure data handling.
+- **Localization:** Robust multi-language support, featuring a seamless Arabic experience.
+- **Modern Security:** Built-in CSRF protection, secure password hashing (BCrypt), and custom Captcha systems.
+- **Developer Friendly:** Fully containerized with Docker for "one-command" setup.
+
+---
 
 ## 🛠️ Technology Stack
 
-- **Backend:** PHP (Custom MVC Framework)
-- **Database:** MySQL
-- **Frontend:** HTML5, Tailwind CSS, JavaScript, jQuery
-- **Infrastructure:** Docker, Docker Compose
-- **Development Tools:** Bun (for Tailwind & Node modules), Composer (for PHP dependencies)
+- **Backend:** PHP 8.4 (Custom MVC Framework)
+- **Database:** MySQL 8.0
+- **Frontend:** HTML5, Tailwind CSS v4, JavaScript (ES6+), jQuery
+- **Infrastructure:** Docker & Docker Compose
+- **Tooling:** Bun (Frontend Assets), Composer (PHP Dependencies)
 
-## 🏗️ Architecture
+---
 
-The project follows a custom-built Model-View-Controller (MVC) architecture designed for performance and flexibility.
+## 🏗️ Architecture & Design
 
-- **Core Engine:** Custom routing, database abstraction, and query building.
-- **Security:** Built-in CSRF protection, Captcha verification, and secure password hashing.
-- **Localization:** Full support for multiple languages (currently focusing on Arabic).
+Multaqa follows a strict Model-View-Controller separation to ensure maintainability and scalability.
 
-For more details on the architecture, see [ARCHITECTURE.md](ARCHITECTURE.md).
+- **Routing:** Intelligent URL parsing and controller dispatching.
+- **Query Builder:** A fluent, secure interface for database interactions to prevent SQL Injection.
+- **Validation:** Centralized input validation layer with security-first principles.
 
-## 📊 Database
+For a deep dive, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
-Detailed documentation of the database schema, including table structures and relationships, can be found in [DB.md](DB.md).
+---
 
-## 🔧 Getting Started
+## 📦 Self-Hosting Guide
+
+Hosting your own Multaqa instance is designed to be straightforward.
 
 ### Prerequisites
+- [Docker](https://www.docker.com/get-started) and Docker Compose.
+- (Optional) [Bun](https://bun.sh/) if you wish to modify frontend styles.
 
-- Docker and Docker Compose
-- Bun (for frontend development)
+### Deployment Steps
 
-### Running with Docker
-
-1. Clone the repository.
-2. Build and start the containers:
+1. **Clone the Repository:**
    ```bash
-   docker compose --build -d up
-   ```
-3. Install PHP dependencies:
-   ```bash
-   # Access the webserver shell
-   docker exec -it multaqa-webserver-1 bash
-   # Inside the container, run:
-   composer install
+   git clone https://github.com/your-repo/multaqa.git
+   cd multaqa
    ```
 
-### Frontend Development (Tailwind CSS)
+2. **Environment Configuration:**
+   Copy the example configuration (if available) or ensure `website/app/config.ini` is set up correctly for your environment.
 
-1. Initialize Bun:
+3. **Launch with Docker:**
    ```bash
-   bun install
-   ```
-2. For development (watch mode):
-   ```bash
-   bun run dev
-   ```
-3. For production build:
-   ```bash
-   bun run build
+   docker compose up -d --build
    ```
 
-## 🤝 Contributing
+4. **Install Dependencies:**
+   ```bash
+   docker exec -it multaqa-webserver-1 composer install
+   ```
 
-We welcome contributions from the community! Whether you are a developer, a moderator, or want to suggest new features, your help is appreciated.
+5. **Database Initialization:**
+   The database schema is automatically applied via the Docker volume mounts in the `db/` directory.
 
-Please see [CONTRIBUTORS.md](CONTRIBUTORS.md) for our Hall of Fame and special thanks.
+The platform should now be accessible at `http://localhost`.
+
+---
+
+## 💻 Development Guide
+
+We've optimized the workflow for developers to get started quickly.
+
+### Frontend Workflow
+We use **Tailwind CSS v4** managed by **Bun**.
+- **Install JS deps:** `bun install`
+- **Watch Mode:** `bun run dev` (automatically recompiles CSS on changes).
+- **Production Build:** `bun run build`.
+
+### Backend Workflow
+- Controllers are located in `website/app/controllers/`.
+- Models are in `website/app/models/`.
+- Views use standard PHP templating in `website/app/views/`.
+
+### Coding Standards
+- Follow PSR-12 for PHP.
+- Use the built-in `QueryBuilder` for all DB operations.
+- Ensure all POST requests include a CSRF token.
+
+---
+
+## 🤝 Contributing & Acknowledgments
+
+Multaqa is a community effort. We are incredibly grateful to those who have helped shape this project.
+
+### Featured Contributors
+- **ZeyadMostafaKamal**: Mastermind behind the **Docker** infrastructure and **Tailwind CSS** integration.
+- **mahmoudochrom**: Instrumental in driving the **localization** and translation efforts.
+
+See our full [Hall of Fame](CONTRIBUTORS.md) for more details.
+
+---
 
 ## 📜 License
 
-GPL3 - Gnu Public License v3.0
+This project is licensed under the **GPLv3 License**. See the [LICENSE](LICENSE) file for details.
 
 ---
-*Made with ❤️ in Egypt*
+*Developed with passion 🇪🇬 by the Multaqa Community.*
