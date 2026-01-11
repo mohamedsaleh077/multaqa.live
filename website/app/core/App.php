@@ -24,7 +24,7 @@ class App
             $this->controller = 'controllers\\Home';
         }
         if (file_exists($controller_file)) {
-            $this->controller = 'controllers\\' . ucfirst($this->url[0]);
+            $this->controller = 'controllers\\' . $this->url[0];
             unset($this->url[0]);
         }
         return $this;
