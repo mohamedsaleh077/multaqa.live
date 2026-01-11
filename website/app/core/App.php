@@ -14,6 +14,8 @@ class App
         $this->controller = 'controllers\\ErrorPage';
         $this->method = 'index';
         $this->params = ['404'];
+        $this->controller = new $this->controller;
+
     }
     private function setController()
     {
@@ -54,16 +56,18 @@ class App
         // Parse url into readable string
         $this->url = $this->parseUrl();
 
-        $this->url[0] = ucfirst(strtolower( $this->url[0] ));
+        $this->url[0] = isset($this->url[0]) ? ucfirst(strtolower( $this->url[0] )) : '';
 
         $this->setController()->setMethod()->setParams();
 
         // Create a new instance of the controller
-        if(class_exists($this->controller)) $this->controller = new $this->controller;
-        else $this->forwardToErrorPage();
+        if(!class_exists($this->controller)) $this->forwardToErrorPage();
+        $this->controller = new $this->controller;
 
         // Calls the specific controller, method and pass the parameters to them
+        if(!is_callable([$this->controller, $this->method])) $this->forwardToErrorPage();
         call_user_func_array([$this->controller, $this->method], $this->params);
+
     }
 
     // Parse url  into useable array

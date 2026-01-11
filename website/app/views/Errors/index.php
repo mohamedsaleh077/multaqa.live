@@ -9,7 +9,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
 
     <div class="pagebody">
         <article>
-            <h1 id="err404"></h1>
+            <?php if ($data === '404') { ?>
+                <h1 id="err404"></h1>
+            <?php } ?>
         </article>
     </div>
 </div>
