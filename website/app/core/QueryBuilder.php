@@ -9,6 +9,8 @@ class QueryBuilder
     protected $selectLine = "";
     protected $JoinLine = "";
     protected $whereLine = "";
+//    protected $groupByLine = "";
+    protected $limitLine = "";
     protected $orderLine = "";
     protected $insertLine = "";
     protected $updateLine = "";
@@ -20,7 +22,7 @@ class QueryBuilder
      */
     public function selectAll($table)
     {
-        $this->selectLine = " SELECT * FROM {$table}; ";
+        $this->selectLine = " SELECT * FROM {$table} ";
         return $this;
     }
 
@@ -29,7 +31,7 @@ class QueryBuilder
     */
     public function count($table, $column = '*')
     {
-        $this->selectLine = " SELECT COUNT({$column}) AS count FROM {$table}; ";
+        $this->selectLine = " SELECT COUNT({$column}) AS c FROM {$table} ";
         return $this;
     }
 
@@ -63,7 +65,7 @@ class QueryBuilder
             "inner" => " INNER",
             default => "",
         };
-        $this->JoinLine = $type . " JOIN " . $table . " ON " . $columnOnFKTable . " = " . $columnOnPKTable;
+        $this->JoinLine .= $type . " JOIN " . $table . " ON " . $columnOnFKTable . " = " . $columnOnPKTable;
         return $this;
     }
 
@@ -133,6 +135,11 @@ class QueryBuilder
         return $this;
     }
 
+    public function limit($limit, $offset = 0){
+        $this->limitLine = " LIMIT {$limit} OFFSET {$offset}";
+        return $this;
+    }
+
     /*
      * $table is the table name
      * $value is the columns
@@ -172,7 +179,7 @@ class QueryBuilder
     public function Build()
     {
         if ($this->selectLine) {
-            $this->querysArray[] = $this->selectLine . $this->JoinLine . $this->whereLine . $this->orderLine . " ;";
+            $this->querysArray[] = $this->selectLine . $this->JoinLine . $this->whereLine . $this->orderLine . $this->limitLine . " ;";
         }
 
         if ($this->insertLine) {
@@ -193,7 +200,7 @@ class QueryBuilder
         return $this;
     }
 
-    public function execute(bool $all = false, array $params = []): array | bool
+    public function execute(array $params = [], $all = false): array | bool
     {
         $result = [];
         foreach($this->querysArray as $sql) {
