@@ -294,6 +294,9 @@
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
 }
+body {
+  background-color: #eeeeee;
+}
 .container {
   margin-inline: auto;
   max-width: var(--breakpoint-lg);
