@@ -33,4 +33,9 @@ class Controller {
 
         return $now->diff($past);
     }
+
+    protected function ErrorForward(){
+        header("Location: /ErrorPage/index/404");
+        die();
+    }
 }
