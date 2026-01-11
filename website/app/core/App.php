@@ -9,6 +9,12 @@ class App
     protected $params = ['404'];
     protected $url;
 
+    private function forwardToErrorPage()
+    {
+        $this->controller = 'controllers\\ErrorPage';
+        $this->method = 'index';
+        $this->params = ['404'];
+    }
     private function setController()
     {
         $controller_file = $_SERVER['DOCUMENT_ROOT'] . '/app/controllers/' . $this->url[0] . '.php';
@@ -53,7 +59,8 @@ class App
         $this->setController()->setMethod()->setParams();
 
         // Create a new instance of the controller
-        $this->controller = new $this->controller;
+        if(class_exists($this->controller)) $this->controller = new $this->controller;
+        else $this->forwardToErrorPage();
 
         // Calls the specific controller, method and pass the parameters to them
         call_user_func_array([$this->controller, $this->method], $this->params);
@@ -62,7 +69,11 @@ class App
     // Parse url  into useable array
     private function parseUrl()
     {
-        if (isset($_GET['url']))
-            return explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
+        if (isset($_GET['url'])){
+            $url = filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL);
+            $url = preg_replace('/[^a-zA-Z0-9\/]/', '', $url);
+            return explode('/', $url);
+        }
+        return [];
     }
 }
