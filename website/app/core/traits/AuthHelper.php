@@ -102,9 +102,12 @@ trait AuthHelper
 
     protected function setSessions()
     {
+        if (!empty($this->errors->getErrors())) return;
         $_SESSION['user_id'] = ($this->user[0]) ? $this->user[0]['id'] : Database::lastInsertId();
         $_SESSION['username'] = $this->user[0]['username'] ?? $this->username;
-        $_SESSION['created_since'] = Controller::dateDiff($this->user[0]['created_at']);
+        $_SESSION['created_since'] = (isset($this->user[0]['created_at']))
+            ? Controller::dateDiff($this->user[0]['created_at'])
+            : ["d"=>0, "m"=>0, "y"=>0];
         $_SESSION['pfp'] = $this->user[0]['profile_picture'] ?? '/assets/default_pfp.svg';
         $_SESSION['bio'] = $this->user[0]['bio'] ?? '';
         $_SESSION['userSpaces'] = $this->getSpaces();
