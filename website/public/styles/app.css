@@ -10,6 +10,10 @@
     --secound-bg: #FAF1DD;
 
 }
+
+body{
+    @apply bg-[#eeeeee]
+}
 .container {
     @apply max-w-screen-lg mx-auto bg-(--secound-bg)
 }
