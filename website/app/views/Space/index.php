@@ -1,4 +1,5 @@
 <?php
+var_dump($data);
 $data['name'] = ucfirst($data['name']);
 $data['avatar'] = $data['avatar'] ?? "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.zerochan.net%2FKasane.Teto.full.4077055.jpg&f=1&nofb=1&ipt=71a75ef842321dce37c26a08f7afabc86da1b41be75a078beb4df64c06cb3aef";
 $title = $data['name'] . " Space";
