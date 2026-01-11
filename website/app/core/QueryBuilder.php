@@ -3,7 +3,7 @@
 namespace Core;
 
 use Error;
-
+use core\Database;
 class QueryBuilder
 {
     protected $selectLine = "";
@@ -193,7 +193,7 @@ class QueryBuilder
         return $this;
     }
 
-    public function execute(array $params = [], $all = false): array | bool
+    public function execute(bool $all = false, array $params = []): array | bool
     {
         $result = [];
         foreach($this->querysArray as $sql) {

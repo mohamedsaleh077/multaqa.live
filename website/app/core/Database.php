@@ -4,7 +4,7 @@
 // I used https://github.com/Wagner-Souza/eloquent-orm/blob/main/orm/Database.php as a reference
 
 
-namespace Core;
+namespace core;
 
 use PDO;
 use PDOException;
