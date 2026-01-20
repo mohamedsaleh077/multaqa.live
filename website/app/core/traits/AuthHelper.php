@@ -7,6 +7,8 @@ use core\QueryBuilder;
 
 use core\Controller;
 
+use DateTime;
+
 trait AuthHelper
 {
     private $errors;
@@ -107,7 +109,8 @@ trait AuthHelper
         $_SESSION['username'] = $this->user[0]['username'] ?? $this->username;
         $_SESSION['created_since'] = (isset($this->user[0]['created_at']))
             ? Controller::dateDiff($this->user[0]['created_at'])
-            : ["d"=>0, "m"=>0, "y"=>0];
+            : Controller::dateDiff(date("D M d, Y G:i"));
+        ;
         $_SESSION['pfp'] = $this->user[0]['profile_picture'] ?? '/assets/default_pfp.svg';
         $_SESSION['bio'] = $this->user[0]['bio'] ?? '';
         $_SESSION['userSpaces'] = $this->getSpaces();
