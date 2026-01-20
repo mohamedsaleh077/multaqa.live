@@ -4,80 +4,86 @@ namespace core;
 
 class App
 {
-    protected $controller = 'controllers\\ErrorPage';
+    protected $controllerName = 'controllers\\ErrorPage';
     protected $method = 'index';
     protected $params = ['404'];
     protected $url;
-
-    private function forwardToErrorPage()
-    {
-        $this->controller = 'controllers\\ErrorPage';
-        $this->method = 'index';
-        $this->params = ['404'];
-        $this->controller = new $this->controller;
-
-    }
-    private function setController()
-    {
-        $controller_file = $_SERVER['DOCUMENT_ROOT'] . '/app/controllers/' . $this->url[0] . '.php';
-        if (empty($this->url[0])) {
-            $this->controller = 'controllers\\Home';
-        }
-        if (file_exists($controller_file)) {
-            $this->controller = 'controllers\\' . $this->url[0];
-            unset($this->url[0]);
-        }
-        return $this;
-    }
-
-    private function setMethod()
-    {
-        if (isset($this->url[1])) {
-            if (method_exists($this->controller, $this->url[1])) {
-                $this->method = $this->url[1];
-                unset($this->url[1]);
-            } else {
-                $this->controller = 'controllers\\ErrorPage';
-            }
-        }
-        return $this;
-    }
-
-    private function setParams()
-    {
-        if($this->controller !== 'controllers\\ErrorPage'){
-            $this->params = isset($this->url[2]) ? array_values($this->url) : [];
-        }
-        return $this;
-    }
+    protected $controller;
 
     public function __construct()
     {
         // Parse url into readable string
-        $this->url = $this->parseUrl();
+        $this->parseUrl();
 
-        $this->url[0] = isset($this->url[0]) ? ucfirst(strtolower( $this->url[0] )) : '';
+        $this->url[0] = ucfirst(strtolower( $this->url[0] ?? '' ));
 
-        $this->setController()->setMethod()->setParams();
+        $this->setController();
+        $this->setMethod();
+        $this->setParams();
 
+        $this->controller = new $this->controllerName();
         // Create a new instance of the controller
-        if(!class_exists($this->controller)) $this->forwardToErrorPage();
-        $this->controller = new $this->controller;
+        if(!class_exists($this->controllerName) || !is_callable([$this->controller, $this->method])) {
+            $this->setPageToErrorPage();
+        }
 
-        // Calls the specific controller, method and pass the parameters to them
-        if(!is_callable([$this->controller, $this->method])) $this->forwardToErrorPage();
-        call_user_func_array([$this->controller, $this->method], $this->params);
-
+        call_user_func_array([($this->controller), $this->method], $this->params);
     }
 
     // Parse url  into useable array
     private function parseUrl()
     {
-        if (isset($_GET['url'])){
-            $url = filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL);
-            $url = preg_replace('/[^a-zA-Z0-9\/]/', '', $url);
-            return explode('/', $url);
+        if (!isset($_GET['url'])){
+            $this->url = [];
+            return;
         }
-        return [];
+        $url = filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL);
+        $url = preg_replace('/[^a-zA-Z0-9\/]/', '', $url);
+        $this->url = explode('/', $url);
+    }
+
+    private function setController()
+    {
+        if (empty($this->url[0])) {
+            $this->controllerName = 'controllers\\Home';
+            return;
+        }
+
+        $controller_file = $_SERVER['DOCUMENT_ROOT'] . '/app/controllers/' . $this->url[0] . '.php';
+        if (file_exists($controller_file)) {
+            $this->controllerName = 'controllers\\' . $this->url[0];
+            unset($this->url[0]);
+        }
+    }
+
+    private function setMethod()
+    {
+        if (!isset($this->url[1])) {
+            return;
+        }
+
+        if (!method_exists($this->controllerName, $this->url[1])) {
+            $this->controllerName = 'controllers\\ErrorPage';
+            return;
+        }
+
+        $this->method = $this->url[1];
+        unset($this->url[1]);
+    }
+
+    private function setParams()
+    {
+        if($this->controllerName === 'controllers\\ErrorPage'){
+            return;
+        }
+
+        $this->params = isset($this->url[2]) ? array_values($this->url) : [];
+    }
+
+    private function setPageToErrorPage()
+    {
+        $this->controller = new \controllers\ErrorPage();
+        $this->method = 'index';
+        $this->params = ['404'];
     }
 }
