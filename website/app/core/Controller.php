@@ -38,4 +38,17 @@ class Controller {
         header("Location: /ErrorPage/index/404");
         die();
     }
+
+    protected function checkNumParam($index)
+    {
+        if (!empty($index) && is_numeric($index) && $index > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    protected function errorForwardApi(){
+        header("HTTP/1.1 404 Not Found");
+        die();
+    }
 }
