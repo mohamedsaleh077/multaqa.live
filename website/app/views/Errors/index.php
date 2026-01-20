@@ -1,4 +1,5 @@
 <?php
+header("HTTP/1.1 404 Not Found");
 $title = "Error";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
 ?>
