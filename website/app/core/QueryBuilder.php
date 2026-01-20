@@ -1,15 +1,16 @@
 <?php
 // My ORM feels so sigma
-namespace Core;
+namespace core;
 
 use Error;
 use core\Database;
+
 class QueryBuilder
 {
     protected $selectLine = "";
     protected $JoinLine = "";
     protected $whereLine = "";
-//    protected $groupByLine = "";
+    protected $groupByLine = "";
     protected $limitLine = "";
     protected $orderLine = "";
     protected $insertLine = "";
@@ -57,14 +58,15 @@ class QueryBuilder
      * @param $columnOnFKTable for the left side
      * @param $type for Left, Right or inner!
      */
-    public function join($table, $columnOnPKTable, $columnOnFKTable, $type = "")
+    public function join($table, $columnOnPKTable, $columnOnFKTable, $type = "", $outer = false)
     {
         $type = match ($type) {
             "left" => " LEFT",
             "right" => " RIGHT",
-            "inner" => " INNER",
-            default => "",
+            "full" => " FULL ",
+            default => " INNER ",
         };
+        if($outer) $type .= " OUTER ";
         $this->JoinLine .= $type . " JOIN " . $table . " ON " . $columnOnFKTable . " = " . $columnOnPKTable;
         return $this;
     }
@@ -72,36 +74,37 @@ class QueryBuilder
     /*
      * where protection, to kill the connector if the developer inserted it by mistake
      */
-    protected function whereConnectorProtection($arr) :array
+    protected function whereConnectorProtection($arr): array
     {
         $index = count($arr) - 1;
-        if(isset($arr[$index][2])) $arr[$index][2] = "";
+        if (isset($arr[$index][2])) $arr[$index][2] = "";
         return $arr;
     }
 
     /*
      * I need to reduce the repeation
      */
-    protected function whereBuilder($arr) :string
+    protected function whereBuilder($arr): string
     {
-        $placeholders = " :" . $arr[0];
+        if(isset($arr[3])) $placeholder = " :" . $arr[3];
+        else $placeholder = " :" . $arr[0];
         $arr[1] = strtoupper($arr[1]); // if operator is LIKE
         $arr[2] = isset($arr[2]) ? strtoupper($arr[2]) : "";
-        return " {$arr[0]} {$arr[1]} {$placeholders} {$arr[2]} ";
+        return " {$arr[0]} {$arr[1]} {$placeholder} {$arr[2]} ";
     }
 
     /*
      * @param $columns is the right side
-     * [ [column, "=", "or"], [column, "!=", "and"], [column, "like"], [[column, "=", "and"], [column, "LIKE"]], [column, "="] ]
+     * [ [column, "=", "or", "custom Alias"], [column, "!=", "and"], [column, "like"], [[column, "=", "and"], [column, "LIKE"]], [column, "="] ]
      */
     public function where($columns)
     {
         $columnEqlPlaceholder = [];
         $lastIndex = count($columns) - 1;
-        if(is_array($columns[$lastIndex][0])) {
+        if (is_array($columns[$lastIndex][0])) {
             $columns = $this->whereConnectorProtection($columns);
         }
-        for($i = 0; $i < count($columns); $i++) {
+        for ($i = 0; $i < count($columns); $i++) {
             $arr = $columns[$i];
             if (is_array($arr[0])) {
                 $arr = $this->whereConnectorProtection($arr);
@@ -111,7 +114,7 @@ class QueryBuilder
                 }
                 $columnEqlPlaceholder[] .= " ) ";
             } else {
-                $columnEqlPlaceholder[] .= $this->whereBuilder($arr); ;
+                $columnEqlPlaceholder[] .= $this->whereBuilder($arr);;
             }
         }
         $this->whereLine = " WHERE " . implode(' ', $columnEqlPlaceholder);
@@ -135,7 +138,14 @@ class QueryBuilder
         return $this;
     }
 
-    public function limit($limit, $offset = 0){
+    public function groupBy($columns)
+    {
+        $this->groupByLine = " GROUP BY " . implode("," , $columns) . " ";
+        return $this;
+    }
+
+    public function limit($limit, $offset = 0)
+    {
         $this->limitLine = " LIMIT {$limit} OFFSET {$offset}";
         return $this;
     }
@@ -179,35 +189,43 @@ class QueryBuilder
     public function Build()
     {
         if ($this->selectLine) {
-            $this->querysArray[] = $this->selectLine . $this->JoinLine . $this->whereLine . $this->orderLine . $this->limitLine . " ;";
+            $this->querysArray[] =
+                $this->selectLine
+                . $this->JoinLine
+                . $this->whereLine
+                . $this->groupByLine
+                . $this->orderLine
+                . $this->limitLine
+                . " ;";
         }
 
         if ($this->insertLine) {
-            $this->querysArray[] =  $this->insertLine . " ;";
+            $this->querysArray[] = $this->insertLine . " ;";
         }
 
         if ($this->updateLine && $this->whereLine) {
-            $this->querysArray[] =  $this->updateLine . $this->whereLine . " ;";
+            $this->querysArray[] = $this->updateLine . $this->whereLine . " ;";
         }
 
         if ($this->deleteLine && $this->whereLine) {
-            $this->querysArray[] =  $this->deleteLine . $this->whereLine . " ;";
+            $this->querysArray[] = $this->deleteLine . $this->whereLine . " ;";
         }
 
         $this->selectLine = $this->JoinLine = $this->whereLine = $this->orderLine = "";
+        $this->groupByLine = $this->limitLine = "";
         $this->insertLine = $this->updateLine = $this->deleteLine = "";
 
         return $this;
     }
 
-    public function execute(array $params = [], $all = false): array | bool
+    public function execute(array $params = [], $all = false): array|bool
     {
         $result = [];
-        foreach($this->querysArray as $sql) {
+        foreach ($this->querysArray as $sql) {
             try {
                 $result[] = $all ? Database::fetchAll($sql, $params) : Database::fetchOne($sql, $params);
-            }catch( \PDOException $Exception ) {
-                throw new error( "error with the query: " . $sql . $Exception->getMessage() , $Exception->getCode());
+            } catch (\PDOException $Exception) {
+                throw new error("error with the query: " . $sql . $Exception->getMessage(), $Exception->getCode());
             }
         }
         $this->querysArray = [];
