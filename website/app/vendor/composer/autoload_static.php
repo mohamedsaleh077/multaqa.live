@@ -20,6 +20,10 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         array (
             'Symfony\\Component\\Finder\\' => 25,
         ),
+        'I' =>
+        array (
+            'Interfaces\\' => 11,
+        ),
         'G' =>
         array (
             'Gregwar\\' => 8,
@@ -42,6 +46,10 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         'Symfony\\Component\\Finder\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
+        ),
+        'Interfaces\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/Interfaces',
         ),
         'Gregwar\\' =>
         array (

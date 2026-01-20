@@ -10,5 +10,6 @@ return array(
     'core\\' => array($baseDir . '/core'),
     'controllers\\' => array($baseDir . '/controllers'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
+    'Interfaces\\' => array($baseDir . '/Interfaces'),
     'Gregwar\\' => array($vendorDir . '/gregwar/captcha/src/Gregwar'),
 );
