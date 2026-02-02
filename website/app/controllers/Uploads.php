@@ -10,7 +10,7 @@ class Uploads extends Controller {
         if (!isset($image)){
             $this->ErrorForward();
         }
-        $filename = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . $image . '.jpg';
+        $filename = $_SERVER['DOCUMENT_ROOT'] . "/app/uploads/" . $image . '.jpg';
         $im = imagecreatefromjpeg( $filename );
         if ($im === false){
             var_dump($im);
@@ -24,7 +24,7 @@ class Uploads extends Controller {
         if (!isset($image)){
             $this->ErrorForward();
         }
-        $filename = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . $image . '.png';
+        $filename = $_SERVER['DOCUMENT_ROOT'] . "/app/uploads/" . $image . '.png';
         $im = imagecreatefrompng( $filename );
         if ($im === false){
             $this->ErrorForward();

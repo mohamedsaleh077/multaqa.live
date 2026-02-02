@@ -20,23 +20,41 @@ class Space extends Controller
 
     use SpaceModel;
 
-    public function details($index)
-    {
-        $this->id = $index;
-        $this->view('Space/index', $this->space[0]);
+    public function api($num, $for = ''){
+        if (!filter_var(FILTER_VALIDATE_INT ,$num) && !($num > 0)){
+            header('header: /ErrorPage/404');
+        }
+        switch($for){
+            case '':
+                $this->fullOneSpaceJson($num);
+                break;
+            case 'all':
+                $this->fullSpacesJson($num);
+                break;
+            default:
+                header('header: /ErrorPage/404');
+        }
+
     }
 
-    public function all($index)
-    {
-        $this->spaces = $this->getSpaces($index);
-        $this->view('Space/list', $this->spaces);
+    public function index($num, $for = ''){
+        if (!filter_var(FILTER_VALIDATE_INT ,$num) && !($num > 0)){
+            header('header: /ErrorPage/404');
+        }
+        switch($for){
+            case '':
+                $this->details($num);
+                break;
+            case 'all':
+                $this->all($num);
+                break;
+            default:
+                header('header: /ErrorPage/404');
+        }
     }
 
-    public function fullOneSpaceJson($index)
+    private function fullOneSpaceJson($index)
     {
-        if (!$this->checkNumParam($index)) {
-            $this->ErrorForward();
-        };
         $this->id = $index;
         $data = [
             'space' => $this->getSpace()[0],
@@ -47,7 +65,7 @@ class Space extends Controller
         echo json_encode($data);
     }
 
-    public function fullSpacesJson($page = "")
+    private function fullSpacesJson($page = "")
     {
         $page = ($page - 1) * 50;
         $data = [
@@ -56,4 +74,18 @@ class Space extends Controller
         header('Content-Type: application/json');
         echo json_encode($data);
     }
+
+    private function details($index)
+    {
+        $this->id = $index;
+        $this->view('Space/index', $this->space[0]);
+    }
+
+    private function all($index)
+    {
+        $this->spaces = $this->getSpaces($index);
+        $this->view('Space/list', $this->spaces);
+    }
+
+
 }

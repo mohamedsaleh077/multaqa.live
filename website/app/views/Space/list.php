@@ -1,5 +1,5 @@
 <?php
-var_dump($data);
+//var_dump($data);
 $title = "All Spaces";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
 ?>
