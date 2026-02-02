@@ -225,7 +225,7 @@ class QueryBuilder
             try {
                 $result[] = $all ? Database::fetchAll($sql, $params) : Database::fetchOne($sql, $params);
             } catch (\PDOException $Exception) {
-                throw new error("error with the query: " . $sql . $Exception->getMessage(), $Exception->getCode());
+              die("error with the query: " . $sql . $Exception->getMessage() . $Exception->getCode());
             }
         }
         $this->querysArray = [];
