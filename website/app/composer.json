@@ -12,7 +12,8 @@
       "core\\": "core/",
       "controllers\\": "controllers/",
       "models\\": "models/",
-      "Interfaces\\": "Interfaces/"
+      "interfaces\\": "interfaces/",
+      "abstracts\\": "abstracts/"
     }
   }
 }
