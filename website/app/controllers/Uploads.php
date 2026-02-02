@@ -3,6 +3,7 @@
 namespace controllers;
 use core\Controller;
 
+// TODO change its fucking stupid name.
 class Uploads extends Controller {
 
     // Index of the Home page (localhost/Home(/index))
