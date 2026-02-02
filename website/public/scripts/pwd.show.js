@@ -14,3 +14,4 @@ checkBoxDiv.addEventListener("click", function () {
         pwd.type = 'password';
     }
 })
+

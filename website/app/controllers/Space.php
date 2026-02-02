@@ -18,32 +18,17 @@ class Space extends Controller
         $this->SQL = new QueryBuilder();
     }
 
-    private function checkNumParam($index)
-    {
-        if (is_numeric($index) && $index > 0) {
-            return true;
-        }
-        return false;
-    }
-
     use SpaceModel;
 
     public function details($index)
     {
-        if (!$this->checkNumParam($index)) {
-            $this->ErrorForward();
-        };
         $this->id = $index;
-        if (!$this->space[0]) {
-            header('Location: /ErrorPage/404');
-            die();
-        }
         $this->view('Space/index', $this->space[0]);
     }
 
-    public function all()
+    public function all($index)
     {
-        $this->spaces = $this->getSpaces();
+        $this->spaces = $this->getSpaces($index);
         $this->view('Space/list', $this->spaces);
     }
 
@@ -64,9 +49,6 @@ class Space extends Controller
 
     public function fullSpacesJson($page = "")
     {
-        if (!$this->checkNumParam($page)) {
-            $this->ErrorForward();
-        };
         $page = ($page - 1) * 50;
         $data = [
             'spaces' => $this->getSpaces($page),

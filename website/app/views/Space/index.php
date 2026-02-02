@@ -1,6 +1,6 @@
 <?php
-var_dump($data);
-$data['name'] = ucfirst($data['name']);
+//var_dump($data);
+$data['name'] = ucfirst($data['name']) ?? "خخخخخخخخخخخ";
 $data['avatar'] = $data['avatar'] ?? "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.zerochan.net%2FKasane.Teto.full.4077055.jpg&f=1&nofb=1&ipt=71a75ef842321dce37c26a08f7afabc86da1b41be75a078beb4df64c06cb3aef";
 $title = $data['name'] . " Space";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
@@ -18,7 +18,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
                     <div class="right">
                         <img src="<?= $data['avatar'] ?>" alt="space-icon">
                         <div class="space-title-name">
-                            <h1><?= $data['name'] ?> Space!</h1>
+                            <h1 id="space_name"><?= $data['name'] ?> Space!</h1>
                             <p>Members: 324 <a href="#">Subscribe!</a></p>
                         </div>
                     </div>
