@@ -29,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'symfony/finder' => array(
-            'pretty_version' => 'v7.4.3',
-            'version' => '7.4.3.0',
-            'reference' => 'fffe05569336549b20a1be64250b40516d6e8d06',
+            'pretty_version' => 'v7.4.5',
+            'version' => '7.4.5.0',
+            'reference' => 'ad4daa7c38668dcb031e63bc99ea9bd42196a2cb',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/finder',
             'aliases' => array(),

@@ -7,9 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'models\\' => array($baseDir . '/models'),
+    'interface\\' => array($baseDir . '/interfaces'),
     'core\\' => array($baseDir . '/core'),
     'controllers\\' => array($baseDir . '/controllers'),
+    'abstract\\' => array($baseDir . '/abstracts'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
-    'Interfaces\\' => array($baseDir . '/Interfaces'),
     'Gregwar\\' => array($vendorDir . '/gregwar/captcha/src/Gregwar'),
 );

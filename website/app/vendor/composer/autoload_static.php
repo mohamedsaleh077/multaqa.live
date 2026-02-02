@@ -11,18 +11,22 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         array (
             'models\\' => 7,
         ),
+        'i' =>
+        array (
+            'interface\\' => 10,
+        ),
         'c' =>
         array (
             'core\\' => 5,
             'controllers\\' => 12,
         ),
+        'a' =>
+        array (
+            'abstract\\' => 9,
+        ),
         'S' =>
         array (
             'Symfony\\Component\\Finder\\' => 25,
-        ),
-        'I' =>
-        array (
-            'Interfaces\\' => 11,
         ),
         'G' =>
         array (
@@ -35,6 +39,10 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         array (
             0 => __DIR__ . '/../..' . '/models',
         ),
+        'interface\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/interfaces',
+        ),
         'core\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core',
@@ -43,13 +51,13 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         array (
             0 => __DIR__ . '/../..' . '/controllers',
         ),
+        'abstract\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/abstracts',
+        ),
         'Symfony\\Component\\Finder\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
-        ),
-        'Interfaces\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/Interfaces',
         ),
         'Gregwar\\' =>
         array (
