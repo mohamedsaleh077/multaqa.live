@@ -3,20 +3,26 @@
 namespace models;
 use core\QueryBuilder;
 use core\Database;
+use interfaces\iModel;
 
 class SpaceModel
+implements iModel
 {
     protected $SQL;
     public function __construct(){
         $this->SQL = new QueryBuilder();
     }
-    public function getSpaces($page)
+    public function getAll(int $page)
     {
         return $this->SQL->selectAll("spaces")->limit(50, $page)->build()->execute([], true);
     }
 
-    public function getSpace($id){
+    public function getByID($id){
         return $this->SQL->select("spaces", ["*"])->where([["id", "="]])->build()->execute([$id]);
+    }
+
+    public function getCount(){
+        // TODO
     }
 
     public function getSpacePosts($id){
@@ -74,4 +80,36 @@ class SpaceModel
             ->where([["space_id", "="]])
             ->build()->execute([$id]);
     }
+
+    public function checkCategory($id){
+        return $this->SQL
+            ->select("categories", ["*"])
+            ->where([["id", "="]])
+            ->build()->execute([$id]);
+    }
+
+    /*
+     * @params $values = ['category_id' => , 'name' => , 'description' => , 'cover_image' => , 'avatar' =>]
+     */
+    public function create(array $values){
+        $createResult =  $this->SQL
+            ->insert("spaces", ['category_id', 'name', 'description', 'cover_image', 'avatar'])
+            ->build()->execute($values);
+        $lastInsertId = Database::lastInsertId();
+        $settingOwner = $this->SQL
+            ->insert("owners", ["space_id", "owner_id"])
+            ->build()->execute([$lastInsertId, $_SESSION['user_id']]);
+
+        return $createResult + $settingOwner;
+    }
+
+    public function update(int $id, array $values){
+        // TODO
+    }
+
+    public function delete(int $id){
+        // TODO
+    }
+
+
 }
