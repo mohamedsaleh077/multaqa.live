@@ -4,13 +4,14 @@ namespace controllers;
 
 use core\Controller;
 use models\SpaceModel;
+use interfaces\CRUD;
 
 class Space extends Controller
+implements CRUD
 {
     protected $spaceModel;
     protected $spaces = [];
     protected $space = [];
-    protected $id;
 
     public function __construct()
     {
@@ -23,15 +24,14 @@ class Space extends Controller
         }
         switch($for){
             case '':
-                $this->fullOneSpaceJson($num);
+                $this->get($num);
                 break;
             case 'all':
-                $this->fullSpacesJson($num);
+                $this->getAll($num);
                 break;
             default:
                 header('header: /ErrorPage/404');
         }
-
     }
 
     public function index($num, $for = ''){
@@ -40,29 +40,28 @@ class Space extends Controller
         }
         switch($for){
             case '':
-                $this->details($num);
+                $this->view('Space/index');
                 break;
             case 'all':
-                $this->all($num);
+                $this->view('Space/list');
                 break;
             default:
                 header('header: /ErrorPage/404');
         }
     }
 
-    private function fullOneSpaceJson($index)
+    public function get($id)
     {
-        $this->id = $index;
         $data = [
-            'space' => $this->spaceModel->getSpace($index)[0],
-            'posts' => $this->spaceModel->getSpacePosts($index),
-            'users_count' => $this->spaceModel->getUsersCount($index)[0]
+            'space' => $this->spaceModel->getSpace($id)[0],
+            'posts' => $this->spaceModel->getSpacePosts($id),
+            'users_count' => $this->spaceModel->getUsersCount($id)[0]
         ];
         header('Content-Type: application/json');
         echo json_encode($data);
     }
 
-    private function fullSpacesJson($page = "")
+    public function getAll($page = 1)
     {
         $page = ($page - 1) * 50;
         $data = [
@@ -72,17 +71,16 @@ class Space extends Controller
         echo json_encode($data);
     }
 
-    private function details($index)
-    {
-        $this->id = $index;
-        $this->view('Space/index', $this->space[0]);
+    public function create(){
+        // TODO
     }
 
-    private function all($index)
-    {
-        $this->spaces = $this->spaceModel->getSpaces($index);
-        $this->view('Space/list', $this->spaces);
+    public function update($id){
+        // TODO
     }
 
+    public function delete($id){
+        // TODO
+    }
 
 }
