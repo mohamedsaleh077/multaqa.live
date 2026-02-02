@@ -13,7 +13,7 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         ),
         'i' =>
         array (
-            'interface\\' => 10,
+            'interfaces\\' => 11,
         ),
         'c' =>
         array (
@@ -22,7 +22,7 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         ),
         'a' =>
         array (
-            'abstract\\' => 9,
+            'abstracts\\' => 10,
         ),
         'S' =>
         array (
@@ -39,7 +39,7 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         array (
             0 => __DIR__ . '/../..' . '/models',
         ),
-        'interface\\' =>
+        'interfaces\\' =>
         array (
             0 => __DIR__ . '/../..' . '/interfaces',
         ),
@@ -51,7 +51,7 @@ class ComposerStaticInit069413c23c1134012e167c72e6c605ca
         array (
             0 => __DIR__ . '/../..' . '/controllers',
         ),
-        'abstract\\' =>
+        'abstracts\\' =>
         array (
             0 => __DIR__ . '/../..' . '/abstracts',
         ),
