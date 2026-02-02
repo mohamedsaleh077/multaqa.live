@@ -1,24 +1,19 @@
 <?php
-//var_dump($data);
-$data['name'] = ucfirst($data['name']) ?? "خخخخخخخخخخخ";
-$data['avatar'] = $data['avatar'] ?? "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.zerochan.net%2FKasane.Teto.full.4077055.jpg&f=1&nofb=1&ipt=71a75ef842321dce37c26a08f7afabc86da1b41be75a078beb4df64c06cb3aef";
-$title = $data['name'] . " Space";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
 ?>
 </head>
 <body>
 <div class="container">
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/header.php'; ?>
-
     <div class="pagebody">
         <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/general.aside.php'; ?>
         <article>
             <div class="space-title">
                 <div class="space-title-header">
                     <div class="right">
-                        <img src="<?= $data['avatar'] ?>" alt="space-icon">
+                        <img src="/uploads/jpeg/avatar" alt="space-icon">
                         <div class="space-title-name">
-                            <h1 id="space_name"><?= $data['name'] ?> Space!</h1>
+                            <h1 id="space_name"> Space!</h1>
                             <p>Members: 324 <a href="#">Subscribe!</a></p>
                         </div>
                     </div>
@@ -31,7 +26,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
                         })
                     </script>
                 </div>
-                <p><?= $data['description'] ?></p>
+                <p></p>
             </div>
             <hr>
             <div class="box post-box" id="post-box">
@@ -58,7 +53,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
                     quia unde. Asperiores consectetur, culpa cum dolores eos esse et itaque nam numquam quisquam, quod
                     rerum.
                 </p>
-                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.zerochan.net%2FKasane.Teto.full.4077055.jpg&f=1&nofb=1&ipt=71a75ef842321dce37c26a08f7afabc86da1b41be75a078beb4df64c06cb3aef" alt="media">
+                <img src="/uploads/jpeg/cover" alt="media">
                 <div class="post-footer">
                     <div class="left"><a href="#">share</a> . 15 <a href="#">comment</a></div>
                     <div class="right"><a href="#" class="font-bold">upvote</a> 121 <a href="#">downvote</a></div>
@@ -67,7 +62,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
         </article>
     </div>
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/footer.php'; ?>
-
 </div>
 </body>
 </html>
