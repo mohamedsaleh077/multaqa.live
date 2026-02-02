@@ -11,20 +11,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
             <div class="space-title">
                 <div class="space-title-header">
                     <div class="right">
-                        <img src="/uploads/jpeg/avatar" alt="space-icon">
+                        <img src="/uploads/jpeg/avatar" id="space_avatar" alt="space-icon">
                         <div class="space-title-name">
-                            <h1 id="space_name"> Space!</h1>
-                            <p>Members: 324 <a href="#">Subscribe!</a></p>
+                            <h1 id="space_name"></h1>
+                            <p>Members: <span id="member_count"></span> <a href="#">Subscribe!</a></p>
+                            <h3 id="space_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, labore.</h3>
                         </div>
                     </div>
                     <div class="left">
                         <button id="create-post-btn">Post</button>
                     </div>
-                    <script>
-                        $("#create-post-btn").click(function () {
-                            $("#post-box").toggle();
-                        })
-                    </script>
+
                 </div>
                 <p></p>
             </div>
@@ -39,29 +36,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/head.php';
                 </form>
             </div>
             <hr>
-            <div class="post">
-                <div class="post-head">
-                    <img src="/assets/default_pfp.svg" alt="">
-                    <div>
-                        <h2>username</h2>
-                        <small>2025-2-23 19:23:21</small>
-                    </div>
-                </div>
-                <h3>Post Subject</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut commodi, dolore et excepturi minus
-                    quia unde. Asperiores consectetur, culpa cum dolores eos esse et itaque nam numquam quisquam, quod
-                    rerum.
-                </p>
-                <img src="/uploads/jpeg/cover" alt="media">
-                <div class="post-footer">
-                    <div class="left"><a href="#">share</a> . 15 <a href="#">comment</a></div>
-                    <div class="right"><a href="#" class="font-bold">upvote</a> 121 <a href="#">downvote</a></div>
-                </div>
+            <div id="posts-container">
+                
             </div>
         </article>
     </div>
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/app/templates/footer.php'; ?>
 </div>
+    <script>
+        $("#create-post-btn").click(function () {
+            $("#post-box").toggle();
+        })
+    </script>
+    <script src="/website/public/scripts/space-index.js"></script>
 </body>
 </html>
