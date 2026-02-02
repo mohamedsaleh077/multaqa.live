@@ -16,14 +16,14 @@ $.get('/Space/api/1/', function(data) {
                         </div>
                     </div>
                 
-                    <h3>${post.title}</h3>
+                    <h3>${post.post_title}</h3>
                     <p>
-                        ${post.body}
+                        ${post.post_body}
                     </p>
                     <img src="/uploads/jpeg/cover" alt="media">
                     <div class="post-footer">
                         <div class="left"><a href="#">share</a> . 15 <a href="#">comment</a></div>
-                        <div class="right"><a href="#" class="font-bold">upvote</a> 121 <a href="#">downvote</a></div>
+                        <div class="right"><a href="#" class="font-bold">upvote</a> ${post.post_score} <a href="#">downvote</a></div>
                     </div>
                 </div>
             `).appendTo("#posts-container");
