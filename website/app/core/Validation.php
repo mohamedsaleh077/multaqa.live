@@ -5,8 +5,8 @@ namespace Core;
 class Validation
 {
     protected $errors = [];
-    public function addError($errorId) {
-        $this->errors[] = $errorId;
+    public function addError($errorId, $errorMessage) {
+        $this->errors[$errorId] = $errorMessage;
     }
 
     public function getErrors() {
