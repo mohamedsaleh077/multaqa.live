@@ -41,9 +41,15 @@ class SpaceModel
 //            ->build()->execute([$id, 1]);
         $query = "SELECT 
                     posts.id AS post_id,
-                    posts.title,
-                    posts.body,
-                
+                    posts.title AS post_title,
+                    posts.body AS post_body,
+                    post.score AS post_score,
+                    posts.created_at AS created_at,
+                    
+                    users.id AS user_id,
+                    users.username AS username,
+                    users.profile_picture AS profile_picture,
+                    
                     COALESCE(
                         JSON_ARRAYAGG(uploads.filename),
                         JSON_ARRAY()
@@ -51,6 +57,7 @@ class SpaceModel
                 
                 FROM posts
                 
+                LEFT JOIN users ON posts.user_id = users.id
                 LEFT JOIN uploads 
                     ON uploads.ref_id = posts.id
                    AND uploads.entity_type_id = 1
