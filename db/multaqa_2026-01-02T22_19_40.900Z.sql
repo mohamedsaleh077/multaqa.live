@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `posts`
     `title`      VARCHAR(255) NOT NULL,
     `body`       TEXT,
     `is_pinned`  BOOLEAN      NOT NULL DEFAULT False,
-    `score`      INTEGER      NOT NULL DEFAULT 0,
+    `score`      INTEGER      NOT NULL DEFAULT 1
     `created_at` TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP             DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP    NULL     DEFAULT NULL,
@@ -206,3 +206,16 @@ INSERT INTO `types` (`name`) VALUES ('post'), ('comment'), ('reaction'), ('repor
 INSERT INTO `reaction_types` (`name`) VALUES ('upvote'), ('downvote');
 INSERT INTO `categories` (`name`) VALUES ('general');
 INSERT INTO `spaces` (`name`, `category_id`, `description`) VALUES ('general', 1, 'Very General For TESTONG');
+
+-- test Abc#1234
+INSERT INTO `users` (`username`, `password_hash`, `profile_picture`, `bio`)
+VALUES ('test', '$2y$12$9bLLLfWP1hLhhDP7hImVXOf./lMN5y2FfVJBFbs4RjEle2J9CdJTi', 'avatar', 'I am a test user!');
+
+INSERT INTO `feed` (`user_id`, `space_id`)
+VALUES (1, 1);
+
+INSERT INTO `posts` (`user_id`, `space_id`, `title`, `body`)
+VALUES (1, 1, 'test post', 'Hi! I am a test');
+
+INSERT INTO `uploads` (`user_id`, `filename`, `entity_type_id`, `ref_id`)
+VALUES (1, 'cover', 1, 1);
