@@ -13,7 +13,8 @@
       "controllers\\": "controllers/",
       "models\\": "models/",
       "interfaces\\": "interfaces/",
-      "abstracts\\": "abstracts/"
+      "abstracts\\": "abstracts/",
+      "traits\\": "traits/"
     }
   }
 }
