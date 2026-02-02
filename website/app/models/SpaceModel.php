@@ -43,7 +43,7 @@ class SpaceModel
                     posts.id AS post_id,
                     posts.title AS post_title,
                     posts.body AS post_body,
-                    post.score AS post_score,
+                    posts.score AS post_score,
                     posts.created_at AS created_at,
                     
                     users.id AS user_id,
