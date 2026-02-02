@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `posts`
     `title`      VARCHAR(255) NOT NULL,
     `body`       TEXT,
     `is_pinned`  BOOLEAN      NOT NULL DEFAULT False,
-    `score`      INTEGER      NOT NULL DEFAULT 1
+    `score`      INTEGER      NOT NULL DEFAULT True,
     `created_at` TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP             DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP    NULL     DEFAULT NULL,
@@ -202,6 +202,15 @@ CREATE TABLE IF NOT EXISTS feed
     CONSTRAINT `fk_feed_post` FOREIGN KEY (`space_id`) REFERENCES `spaces` (`id`) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS owners
+(
+    `user_id` INTEGER NOT NULL,
+    `space_id` INTEGER NOT NULL,
+    PRIMARY KEY (`user_id`, `space_id`),
+    CONSTRAINT `fk_owners_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+    CONSTRAINT `fk_owners_space` FOREIGN KEY (`space_id`) REFERENCES `spaces` (`id`) ON DELETE CASCADE
+);
+
 INSERT INTO `types` (`name`) VALUES ('post'), ('comment'), ('reaction'), ('report');
 INSERT INTO `reaction_types` (`name`) VALUES ('upvote'), ('downvote');
 INSERT INTO `categories` (`name`) VALUES ('general');
@@ -212,6 +221,9 @@ INSERT INTO `users` (`username`, `password_hash`, `profile_picture`, `bio`)
 VALUES ('test', '$2y$12$9bLLLfWP1hLhhDP7hImVXOf./lMN5y2FfVJBFbs4RjEle2J9CdJTi', 'avatar', 'I am a test user!');
 
 INSERT INTO `feed` (`user_id`, `space_id`)
+VALUES (1, 1);
+
+INSERT INTO `owners` (`user_id`, `space_id`)
 VALUES (1, 1);
 
 INSERT INTO `posts` (`user_id`, `space_id`, `title`, `body`)
